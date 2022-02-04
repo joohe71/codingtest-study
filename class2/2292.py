@@ -20,4 +20,3 @@ else:
         if (n <= last):
             print(road)
             break
-

@@ -1,6 +1,3 @@
-from cgi import test
-
-
 while (True):
     test = list(map(int, input().split()))
     test.sort()
