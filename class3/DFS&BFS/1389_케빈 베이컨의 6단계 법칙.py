@@ -38,3 +38,43 @@ for i in range(len(result)):
 
 print(min(arr))
 
+# ============================
+
+# 완벽한 방법은 아니지만 답은 맞음
+
+import sys
+from collections import deque
+input = sys.stdin.readline
+n,m = map(int, input().split(' '))
+graph = [[] for x in range(n+1)]
+for _ in range(m):
+    x, y = map(int,input().split(' '))
+    graph[x].append(y)
+    graph[y].append(x)
+# print(graph)
+
+def bfs(v):
+    visited = [0]*(n+1)
+    queue = deque([v])
+    while queue:
+        a = queue.popleft()
+        for i in graph[a]:
+            if visited[i] == 0:
+                visited[i] = visited[a]+1
+                queue.append(i)
+    
+    return(sum(visited))
+
+
+
+
+
+result=[]
+for i in range(1,n+1):
+    result.append(bfs(i))
+# print(result)
+arr = []
+for i in range(len(result)):
+    if result[i] == min(result):
+        arr.append(i+1)
+print(min(arr))

@@ -49,6 +49,46 @@ print(res-1)
      
 
 
+# ==================================
 
 
+from collections import deque
+import sys
+input = sys.stdin.readline
+
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
+
+m, n = map(int, input().split())
+n_list = [list(map(int, input().split())) for _ in range(n)]
+
+que = deque()
+for i in range(n):
+  for j in range(m):
+    if n_list[i][j] == 1:
+      que.append((i,j,0))
+
+while que:
+  tx, ty, tday = que.popleft()
+  for i in range(4):
+    nx = dx[i] + tx
+    ny = dy[i] + ty
+    nday = tday + 1
+
+    if nx < 0 or nx >= n or ny < 0 or ny >= m:
+      continue
+
+    if n_list[nx][ny] == 0:
+      que.append((nx,ny,nday))
+      n_list[nx][ny] = 1
+    
+print(tday)
+print(n_list)
+
+for i in range(n):
+  if n_list[i].count(0) > 0:
+    tday = -1
+    break
+
+print(tday)
 
