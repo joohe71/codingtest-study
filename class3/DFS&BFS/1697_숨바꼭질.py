@@ -23,3 +23,27 @@ Max = 100000
 dist = [0] * (Max+1)
 bfs(n)
 
+# ===================================================
+# 새로운 정답
+
+import sys
+from collections import deque
+input = sys.stdin.readline
+n, k = map(int,input().split(' '))
+visited = [0]*100001
+
+def bfs(v):
+    queue = deque([v])
+    while queue:
+        a = queue.popleft()
+        if a == k:
+            break
+        for i in (a-1,a+1,2*a):
+            if 0<=i<=100000:
+                if visited[i]==0:
+                    queue.append(i)
+                    # print(queue)
+                    visited[i]=visited[a]+1
+    return visited
+
+print(bfs(n)[k])

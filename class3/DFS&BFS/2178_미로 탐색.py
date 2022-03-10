@@ -34,3 +34,34 @@ def bfs(y,x):
 print(bfs(0,0))          
 
 
+# ========================================
+
+# 븍습
+
+import sys
+from collections import deque
+input = sys.stdin.readline
+n, m = map(int,input().split(' '))
+graph=[]
+for _ in range(n):
+    graph.append(list(map(int,input().rstrip())))
+# print(graph)
+
+dx = [1,-1,0,0]
+dy = [0,0,1,-1]
+
+def bfs(x,y):
+    queue=deque([[x,y]])
+    while queue:
+        nx,ny = queue.popleft()
+        for i in range(4):
+            a = nx + dx[i]
+            b = ny + dy[i]
+            if 0<=a<n and 0<=b<m:
+                if graph[a][b]==1:
+                    graph[a][b]=graph[nx][ny]+1
+                    queue.append([a,b]) 
+    return(graph[n-1][m-1])
+
+print(bfs(0,0))
+
