@@ -4,6 +4,41 @@
 # 현재 사진이 게시된 학생이 다른 학생의 추천을 받은 경우에는 추천받은 횟수만 증가시킨다.
 # 사진틀에 게시된 사진이 삭제되는 경우에는 해당 학생이 추천받은 횟수는 0으로 바뀐다.
 
+# 더 나은 풀이
+
+import sys
+input =sys.stdin.readline
+n = int(input())
+rec = int(input())
+rec_arr = list(map(int,input().split(' ')))
+dict = {}
+# print(rec_arr)
+cnt = 0
+for i in rec_arr:
+    cnt += 1
+    if len(dict)<n:
+        if i not in list(dict.keys()):
+            dict[i] = [1,cnt]
+        else:
+            dict[i][0] += 1
+    else:
+        if i in list(dict.keys()):
+            dict[i][0] += 1
+        else:
+            new_dict = sorted(dict.items(),key= lambda x: (x[1][0],x[1][1]))
+            # print(new_dict)
+            del dict[new_dict[0][0]]
+            dict[i] = [1,cnt]
+
+result = list(dict.keys())
+result.sort()
+
+print(*result)
+
+
+# ===========================
+
+
 import sys
 input= sys.stdin.readline
 n = int(input())
