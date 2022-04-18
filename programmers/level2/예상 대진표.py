@@ -1,3 +1,33 @@
+# 좀 더 간결한 방법 1
+def solution(n,a,b):
+    answer = 0
+
+    while a != b:
+        answer+=1
+        
+        if a % 2 == 0:
+            a = a // 2
+        else:
+            a = a // 2 + 1
+            
+        if b % 2 == 0:
+            b = b // 2
+        else:
+            b = b // 2 + 1
+            
+    return answer
+
+# 좀 더 간결한 방법 2
+def solution(n,a,b):
+    answer = 0
+
+    while a != b:
+        answer+=1
+        a, b = (a+1)//2, (b+1)//2                    
+    return answer
+
+
+# 내 풀이
 def repeat(n_list,a,b):
     arr = [(n_list[2*i],n_list[2*i+1]) for i in range(len(n_list)//2)]
     new_arr = []
